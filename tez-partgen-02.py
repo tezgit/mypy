@@ -1,4 +1,3 @@
-#from tpix import tpix
 import keyboard
 import time
 import random
@@ -15,16 +14,18 @@ class tpix:
     def __init__(self, x, y, rr, gg, bb):
         self.tx = x
         self.ty = y
+        self.rr = rr
+        self.gg = gg
+        self.bb = bb
         gfxdraw.pixel(surf, x, y, (rr, gg, bb, 255))
 
-    def tmove(self, mx, my):
-        self.tx = mx
-        self.ty = my
-        print("moving to " + str(mx) + str(my))
-        gfxdraw.pixel(surf, mx, my, (0, 0, 255, 255))
+    def tmove(self):
+        # print("moving to " + str(mx) + str(my))
+        gfxdraw.pixel(surf, self.tx + random.randint(0, 10), self.ty + random.randint(0, 10),
+                      (self.rr, self.gg, self.bb, 255))
 
 
-Tmaxelements = 23
+Tmaxelements = 50
 Tarray = []
 
 width = 300  # image width in pixels
@@ -96,8 +97,12 @@ while True:
     if (num < Tmaxelements):
         Tarray[num] = tpix(rx, ry, rr, gg, bb)
         num += 1
-    else:
-        num = 0
+    # else:
+    #     num = 0
+    #     surf.fill(black)
+
+    for tt in range(Tmaxelements):
+        Tarray[tt].tmove()
 
     # print(Tarray)
     screen.blit(surf, (0, 0))

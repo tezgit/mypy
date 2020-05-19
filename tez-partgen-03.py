@@ -1,4 +1,3 @@
-#from tpix import tpix
 import keyboard
 import time
 import random
@@ -15,26 +14,45 @@ class tpix:
     def __init__(self, x, y, rr, gg, bb):
         self.tx = x
         self.ty = y
+        self.rr = rr
+        self.gg = gg
+        self.bb = bb
+        rrx = random.randint(0, 1)
+        rry = random.randint(0, 1)
+        if (rrx):
+            self.dirx = 1
+        else:
+            self.dirx = -1
+        if (rry):
+            self.diry = 1
+        else:
+            self.diry = -1
         gfxdraw.pixel(surf, x, y, (rr, gg, bb, 255))
 
-    def tmove(self, mx, my):
-        self.tx = mx
-        self.ty = my
-        print("moving to " + str(mx) + str(my))
-        gfxdraw.pixel(surf, mx, my, (0, 0, 255, 255))
+        # self.incx = random.randint(0, 2)
+        # self.incy = random.randint(0, 2)
+        self.incx = random.random()
+        self.incy = random.random()
+
+    def tmove(self):
+        self.tx += self.incx * self.dirx / random.randint(1, 10)
+        self.ty += self.incy * self.diry / random.randint(1, 10)
+        mycolor = (self.rr, self.gg, self.bb, 255)
+        # gfxdraw.pixel(surf, self.tx, self.ty, mycolor)
+        gfxdraw.pixel(surf, int(self.tx), int(self.ty), mycolor)
 
 
-Tmaxelements = 23
+Tmaxelements = 1550
 Tarray = []
 
-width = 300  # image width in pixels
-height = 300  # image height in pixels
+width = 800  # image width in pixels
+height = 800  # image height in pixels
 black = (0, 0, 0)
 num = 0
 
 
-# screen = pyg.display.set_mode((width, height), pyg.FULLSCREEN)
-screen = pyg.display.set_mode((width, height), pyg.NOFRAME)
+screen = pyg.display.set_mode((width, height), pyg.FULLSCREEN)
+# screen = pyg.display.set_mode((width, height), pyg.NOFRAME)
 pyg.display.set_caption('TEZPARTGEN')
 screen.fill(black)
 pyg.mouse.set_visible(False)
@@ -96,8 +114,12 @@ while True:
     if (num < Tmaxelements):
         Tarray[num] = tpix(rx, ry, rr, gg, bb)
         num += 1
-    else:
-        num = 0
+    # else:
+    #     num = 0
+    #     surf.fill(black)
+
+    for tt in range(Tmaxelements):
+        Tarray[tt].tmove()
 
     # print(Tarray)
     screen.blit(surf, (0, 0))
