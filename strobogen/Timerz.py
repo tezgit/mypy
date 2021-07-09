@@ -1,4 +1,5 @@
 import pygame as pyg
+pyg.init()
 
 SAVETIME = 1 * 10 * 1000  # mm * ss *  ms
 TEZTIME_EVENT = pyg.USEREVENT + 1
