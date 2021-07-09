@@ -59,13 +59,11 @@ fname = "---"
 pyg.font.init()
 myfont = pyg.font.SysFont('Courier', 10)
 
-
 STROBE_ALFA = 200
 STROBE_XALFA = 200
 
+
 # /////////////////////////////////////////////
-
-
 def strobe():
     surf.fill((0, 0, 0))
     # oversurf.fill((100, 0, 0))
