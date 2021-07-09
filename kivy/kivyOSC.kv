@@ -1,0 +1,41 @@
+<Demo>:
+
+    slid1: slid1
+    slid1val: slid1val
+    slid2: slid2
+    slid2val: slid2val
+
+    cols: 2
+    rows: 2
+ 
+
+    Slider:
+        id: slid1
+        min: 0
+        max: 100
+        step: 1
+        orientation: 'horizontal'
+        on_touch_move: root.on_slid1()
+        on_touch_down: root.on_slid1()
+        # on_touch_up: root.on_slid1()
+
+    Label:
+        id: slid1val
+        text: "---"
+        font_size: 50    
+
+    Slider:
+        id: slid2
+        min: 0
+        max: 100
+        step: 1
+        orientation: 'horizontal'
+        on_touch_move: root.on_slid2()
+        on_touch_down: root.on_slid2()
+        # on_touch_up: root.on_slid1()
+
+    Label:
+        id: slid2val
+        text: "---"
+        font_size: 50    
+    

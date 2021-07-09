@@ -1,0 +1,46 @@
+<Demo>:
+    name: name
+    age:  age
+    slid: slid
+    slidval: slidval
+
+    cols: 1
+    rows: 7
+
+    Label:
+        text: "enter your name"
+        font_size: 50
+
+    TextInput:
+        id: name
+        text: ""
+        font_size: 50
+
+    Label:
+        text: "enter your age"
+        font_size: 50
+
+    TextInput:
+        id: age
+        text: "" 
+        font_size: 50   
+
+    Slider:
+        id: slid
+        min: 0
+        max: 100
+        step: 1
+        orientation: 'horizontal'
+        on_touch_move: root.on_slid()
+        on_touch_down: root.on_slid()
+        on_touch_up: root.on_slid()
+
+    Label:
+        id: slidval
+        text: "---"
+        font_size: 50    
+
+    Button:
+        text: "submit"  
+        on_press: root.on_click() 
+    

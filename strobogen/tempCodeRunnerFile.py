@@ -1,1 +1,1 @@
-Timerz.
+STROBE_RR

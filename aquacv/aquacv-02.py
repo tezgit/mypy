@@ -21,57 +21,65 @@ fd = os.open(str(mypath), os.O_RDONLY)
 os.fchdir(fd)  # Use os.fchdir() method to change the dir
 
 cons = False
-constext = ["---","---","---","---"]
+constext = ["---", "---", "---", "---"]
 curframe = 0
 hh = 100
 lineh = 18
+
 
 def console(pilimage, over):
     global curframe
     global hh
     global lineh
-    
+
     # overlay = Image.new('RGBA', pil_im.size, (0,0,200,200))
     # odraw = ImageDraw.Draw(over)  # Create a context for drawing things on it.
     # odraw.rectangle(((0, pilimage.height - hh), (pilimage.width, pilimage.height)), fill=(0,155,0,50))
-  
-  
 
     c_0 = len(constext[0])
     c_1 = len(constext[1])
     c_2 = len(constext[2])
     c_3 = len(constext[3])
-    
+
     fontsize = 12
     font = ImageFont.truetype("Courier_New.ttf", fontsize)
-    
+
     # draw.rectangle(((2, pilimage.height - hh + 2), (len("console") * fontsize, pilimage.height - hh + 2 + fontsize )), fill=(0,0,200,255))
-    over.text((10, pilimage.height - hh + 2), "console", (0, 0, 0, 255), font=font)
- 
-    
-    draw.rectangle(((0, pilimage.height - hh + lineh), (c_0*fontsize, pilimage.height - hh + lineh * 1 + fontsize )), fill=(255,255,255,100))
-    over.text((10, pilimage.height - hh + lineh*1), constext[0],(255, 255, 255, 255), font=font)
-    draw.rectangle(((0, pilimage.height - hh + lineh * 2), (c_1*fontsize, pilimage.height - hh + lineh * 2 + fontsize )), fill=(255,255,255,100))
-    over.text((10, pilimage.height - hh + lineh*2), constext[1],(255, 255, 255), font=font)
-    draw.rectangle(((0, pilimage.height - hh + lineh * 3), (c_2*fontsize, pilimage.height - hh + lineh * 3 + fontsize )), fill=(255,255,255,100))
-    over.text((10, pilimage.height - hh + lineh*3), constext[2],(255, 255, 255), font=font)
-    draw.rectangle(((0, pilimage.height - hh + lineh * 4), (c_3*fontsize, pilimage.height - hh + lineh * 4 + fontsize )), fill=(255,255,255,100))  
-    over.text((10, pilimage.height - hh + lineh*4), constext[3],(255, 255, 255), font=font)
-    
+    over.text((10, pilimage.height - hh + 2),
+              "console", (0, 0, 0, 255), font=font)
+
+    draw.rectangle(((0, pilimage.height - hh + lineh), (c_0*fontsize,
+                                                        pilimage.height - hh + lineh * 1 + fontsize)), fill=(255, 255, 255, 100))
+    over.text((10, pilimage.height - hh + lineh*1),
+              constext[0], (255, 255, 255, 255), font=font)
+    draw.rectangle(((0, pilimage.height - hh + lineh * 2), (c_1*fontsize,
+                                                            pilimage.height - hh + lineh * 2 + fontsize)), fill=(255, 255, 255, 100))
+    over.text((10, pilimage.height - hh + lineh*2),
+              constext[1], (255, 255, 255), font=font)
+    draw.rectangle(((0, pilimage.height - hh + lineh * 3), (c_2*fontsize,
+                                                            pilimage.height - hh + lineh * 3 + fontsize)), fill=(255, 255, 255, 100))
+    over.text((10, pilimage.height - hh + lineh*3),
+              constext[2], (255, 255, 255), font=font)
+    draw.rectangle(((0, pilimage.height - hh + lineh * 4), (c_3*fontsize,
+                                                            pilimage.height - hh + lineh * 4 + fontsize)), fill=(255, 255, 255, 100))
+    over.text((10, pilimage.height - hh + lineh*4),
+              constext[3], (255, 255, 255), font=font)
+
     # pilimage = Image.composite(pilimage,over,over)
 
 
 # change the file name if needed
-fileName = str(mypath) + '/aquatic.mp4'  # /Users/TeZ/Documents/PY/mypy/aquacv/
+fileName = str(mypath) + '/aquatix.mp4'  # /Users/TeZ/Documents/PY/mypy/aquacv/
 
 cap = cv2.VideoCapture(fileName)  # load the video
 
 cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
-cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+cv2.setWindowProperty(
+    window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 print('Frame count:', frame_count)
-       
+
 
 while(cap.isOpened()):                    # play the video by reading frame by frame
     ret, frame = cap.read()
@@ -90,16 +98,16 @@ while(cap.isOpened()):                    # play the video by reading frame by f
         # Draw yellow border around two contours
         for nn in range(len(contours)):
             cv2.drawContours(frame, contours, nn, (0, 230, 255), 6)
-        
-        constext[1] = "countours: " + str(len(contours)) 
-             
-             #cv2.putText(frame, "frame:" + str(curframe), (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (200, 200, 200), 4)
+
+        constext[1] = "countours: " + str(len(contours))
+
+        #cv2.putText(frame, "frame:" + str(curframe), (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (200, 200, 200), 4)
 
         # qcv2.drawContours(frame, contours, 2, (0, 230, 255), 6)
 
         curframe = int(cap.get(cv2.CAP_PROP_POS_FRAMES))
         constext[0] = "frame: " + str(curframe)
-       
+
         # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         # pil_im = Image.fromarray(frame)
         # draw = ImageDraw.Draw(pil_im)
@@ -109,51 +117,45 @@ while(cap.isOpened()):                    # play the video by reading frame by f
 
         # cv2_im_processed = cv2.cvtColor(np.array(pil_im), cv2.COLOR_RGB2BGR)
         # cv2.imshow('Contours', cv2_im_processed)
-        
-       
-        
-        r,c = frame.shape[:2]
-        r_ = np.linspace(0,r,r+1)
-        c_ = np.linspace(0,c,c+1)
+
+        r, c = frame.shape[:2]
+        r_ = np.linspace(0, r, r+1)
+        c_ = np.linspace(0, c, c+1)
         x_m, y_m = np.meshgrid(c_, r_, sparse=False, indexing='ij')
 
-        
-        
-        
-        
         ddept = cv2.CV_64F
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        x = cv2.Sobel(gray, ddept, 1,0, ksize=3, scale=1)
-        y = cv2.Sobel(gray, ddept, 0,1, ksize=3, scale=1)
-        absx= cv2.convertScaleAbs(x)
+        x = cv2.Sobel(gray, ddept, 1, 0, ksize=3, scale=1)
+        y = cv2.Sobel(gray, ddept, 0, 1, ksize=3, scale=1)
+        absx = cv2.convertScaleAbs(x)
         absy = cv2.convertScaleAbs(y)
-        edge = cv2.addWeighted(absx, 0.5, absy, 0.5,0)
-        
-        #========= PIL IMAGE ==========
+        edge = cv2.addWeighted(absx, 0.5, absy, 0.5, 0)
+
+        # ========= PIL IMAGE ==========
         # TINT_COLOR = (200, 0, 0)  # red
         pil_im = Image.fromarray(edge)
         pil_im = pil_im.convert('RGBA')
         draw = ImageDraw.Draw(pil_im)
-        
-        overlay = Image.new('RGBA', pil_im.size, (0,0,0,255))
-        odraw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
 
-        #====== CONSOLE CHECK ========
-        if cons: 
-            odraw.rectangle(((0, pil_im.height - hh), (pil_im.width, pil_im.height)), fill=(0,100,0,70))
+        overlay = Image.new('RGBA', pil_im.size, (0, 0, 0, 255))
+        # Create a context for drawing things on it.
+        odraw = ImageDraw.Draw(overlay)
+
+        # ====== CONSOLE CHECK ========
+        if cons:
+            odraw.rectangle(
+                ((0, pil_im.height - hh), (pil_im.width, pil_im.height)), fill=(0, 100, 0, 70))
             console(pil_im, odraw)
-            pil_im = Image.composite(pil_im,overlay,overlay)
-            
-        
-        #====== SHOW CV composite image ========
+            pil_im = Image.composite(pil_im, overlay, overlay)
+
+        # ====== SHOW CV composite image ========
         cv2_im_processed = cv2.cvtColor(np.array(pil_im), cv2.COLOR_RGB2BGR)
         cv2.imshow(window_name, cv2_im_processed)
-     
-       
-        #======  KEYSTROKES  ===================
+
+        # ======  KEYSTROKES  ===================
         k = cv2.waitKey(33)
-        if k==27:    # Esc key to stop
+        if k == 27:    # Esc key to stop
             break
         elif k == 99:
             cons = not cons
@@ -175,5 +177,3 @@ while(cap.isOpened()):                    # play the video by reading frame by f
 
 cap.release()
 cv2.destroyAllWindows()
-
-
