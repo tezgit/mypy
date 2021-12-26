@@ -8,7 +8,7 @@ from pygame import gfxdraw
 from pygame.locals import *
 import math
 from PIL import Image, ImageDraw
-import timer
+# import timer
 from ftplib import FTP
 import pathlib
 
@@ -54,7 +54,8 @@ myfont = pyg.font.SysFont('Courier', 10)
 
 # display_surface = pygame.display.set_mode((X, Y))
 
-SAVETIME = 2 * 60 * 1000  # mm * ss *  ms
+# SAVETIME = 1 * 5 * 1000  # mm * ss *  ms
+SAVETIME = 10000  # mm * ss *  ms
 TEZTIME_EVENT = pyg.USEREVENT
 pyg.time.set_timer(TEZTIME_EVENT, SAVETIME)
 
@@ -339,7 +340,8 @@ def genstart():
         placeFile(filename, remotefilename)
         print("remotefilename: " + str(remotefilename) + " saved via FTP")
 
-    rr = random.randint(40, 230)
+    # rr = random.randint(40, 230)
+    rr = random.randint(10, 30)
     SAVETIME = 1 * rr * 1000
     pyg.time.set_timer(TEZTIME_EVENT, SAVETIME)
 

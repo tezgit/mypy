@@ -8,14 +8,15 @@ from pygame import gfxdraw
 from pygame.locals import *
 import math
 from PIL import Image, ImageDraw
-import timer
+# import timer
 from ftplib import FTP
 
 ftp = FTP('ftp.phonomena.net')
 
 gnum = 0
 
-fd = os.open("/Users/TeZ/Documents/PY/mypy", os.O_RDONLY)
+# fd = os.open("/Users/TeZ/Documents/PY/mypy", os.O_RDONLY)
+fd = os.open("/home/tez/Documents/GITEZ/mypy", os.O_RDONLY)
 # Use os.fchdir() method to change the dir
 os.fchdir(fd)
 

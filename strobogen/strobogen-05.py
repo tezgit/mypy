@@ -10,7 +10,7 @@ from pygame import gfxdraw
 from pygame.locals import *
 import math
 from PIL import Image, ImageDraw
-import timer
+# import timer
 from ftplib import FTP
 import pathlib
 
@@ -29,6 +29,7 @@ strobemargin = 70
 
 #  ===== ORIG STARTS HERE
 pyg.init()
+
 
 random.seed(a=None, version=2)
 
